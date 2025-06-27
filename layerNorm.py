@@ -2,11 +2,11 @@ import torch
 import torch.nn as nn
 
 class LayerNorm(nn.Module):
-    def __init__(self, eps):
+    def __init__(self, d_model, eps=1e-6):
         super().__init__()
         self.eps = eps
-        self.alpha = nn.Parameter(torch.ones(1))
-        self.beta = nn.Parameter(torch.zeros(1))
+        self.alpha = nn.Parameter(torch.ones(d_model))
+        self.beta = nn.Parameter(torch.zeros(d_model))
 
     def forward(self, x):
         mean = x.mean(-1, keepdim=True)
